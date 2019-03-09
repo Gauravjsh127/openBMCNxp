@@ -27,13 +27,14 @@ sudo apt-get install -y git build-essential libsdl1.2-dev texinfo gawk chrpath d
 sudo dnf install -y git patch diffstat texinfo chrpath SDL-devel bitbake rpcgen
 sudo dnf groupinstall "C Development Tools and Libraries"
 ```
-### 2) Download the source
+### 2) Download the source(Both from github.com and github.ibm.com)
 ```
-git clone git@github.com:openbmc/openbmc.git
-cd openbmc
+git clone https://github.com/Gauravjsh127/openBMCNxp.git
+cd openBMCNxp
+./openBMC_PSCN/clone-meta-fsp2-ibm-internal.sh
 ```
 
-### 3) Target your hardware
+### 3) Target your hardware(for us its NXP and evb-x86)
 Any build requires an environment variable known as `TEMPLATECONF` to be set
 to a hardware target.
 You can see all of the known targets with
@@ -47,18 +48,24 @@ Palmetto | ```meta-ibm/meta-palmetto/conf```
 Zaius| ```meta-ingrasys/meta-zaius/conf```
 Witherspoon| ```meta-ibm/meta-witherspoon/conf```
 Romulus| ```meta-ibm/meta-romulus/conf```
+NXP| ```meta-evb/meta-evb-nxp/meta-evb-LS1021ATWR/conf/```
+evb-x86| ```meta-evb/meta-evb-nxp/meta-evb-x86/conf/```
 
-
-As an example target Palmetto
+As an example target NXP
 ```
-export TEMPLATECONF=meta-ibm/meta-palmetto/conf
+export TEMPLATECONF=meta-evb/meta-evb-nxp/meta-evb-LS1021ATWR/conf/
+```
+
+As an example target evb-x86
+```
+export TEMPLATECONF=meta-evb/meta-evb-nxp/meta-evb-x86/conf/
 ```
 
 ### 4) Build
 
 ```
 . openbmc-env
-bitbake obmc-phosphor-image
+bitbake core-image-minimal
 ```
 
 Additional details can be found in the [docs](https://github.com/openbmc/docs)
@@ -96,31 +103,39 @@ a new one.
 ## Features of OpenBMC
 
 **Feature List**
-* Host management: Power, Cooling, LEDs, Inventory, Events, Watchdog
-* Full IPMI 2.0 Compliance with DCMI
-* Code Update Support for multiple BMC/BIOS images
-* Web-based user interface
-* REST interfaces
-* D-Bus based interfaces
+* REST Management
+* IPMI
 * SSH based SOL
-* Remote KVM
-* Hardware Simulation
-* Automated Testing
+* Power and Cooling Management
+* Event Logs
+* Zeroconf discoverable
+* Sensors
+* Inventory
+* LED Management
+* Host Watchdog
+* Simulation
+* Code Update Support for multiple BMC/BIOS images
+* POWER On Chip Controller (OCC) Support
 
 **Features In Progress**
-* OpenCompute Redfish Compliance
-* User management
-* Virtual media
+* Full IPMI 2.0 Compliance with DCMI
 * Verified Boot
+* HTML5 Java Script Web User Interface
+* BMC RAS
 
 **Features Requested but need help**
+* OpenCompute Redfish Compliance
 * OpenBMC performance monitoring
+* cgroup user management and policies
+* Remote KVM
+* Remote USB
+* OpenStack Ironic Integration
+* QEMU enhancements
 
 
 ## Finding out more
-
-Dive deeper into OpenBMC by opening the
-[docs](https://github.com/openbmc/docs) repository.
+Dive deeper in to OpenBMC by opening the [docs](https://github.com/openbmc/docs)
+repository.
 
 ## Contact
 - Mail: openbmc@lists.ozlabs.org [https://lists.ozlabs.org/listinfo/openbmc](https://lists.ozlabs.org/listinfo/openbmc)
