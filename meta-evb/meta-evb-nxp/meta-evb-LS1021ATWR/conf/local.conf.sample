@@ -1,0 +1,133 @@
+MACHINE ??= "ls1021atwr"
+DISTRO ?= "openbmc-phosphor"
+PACKAGE_CLASSES ?= "package_rpm"
+SANITY_TESTED_DISTROS_append ?= " *"
+EXTRA_IMAGE_FEATURES = "debug-tweaks"
+USER_CLASSES ?= "buildstats image-mklibs image-prelink"
+PATCHRESOLVE = "noop"
+BB_DISKMON_DIRS = "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    ABORT,${TMPDIR},100M,1K \
+    ABORT,${DL_DIR},100M,1K \
+    ABORT,${SSTATE_DIR},100M,1K \
+    ABORT,/tmp,10M,1K"
+CONF_VERSION = "1"
+INHERIT += "extrausers"
+EXTRA_USERS_PARAMS = " useradd openbmc; \
+                       usermod  -p 'openbmc' openbmc; \
+                       usermod  -a -G sudo openbmc;"
+
+ACCEPT_FSL_EULA = "1"
+
+IMAGE_FSTYPES = "cpio.gz"
+
+IMAGE_INSTALL_append = "kernel-image-uimage kernel-image  "
+
+IMAGE_INSTALL_append = "kernel-dev images "
+
+IMAGE_INSTALL_append = "kernel-vmlinux "
+
+IMAGE_INSTALL_append = "kernel-devicetree "
+
+
+################ Drivers ############################################
+##1 fsptrace ######
+IMAGE_INSTALL_append = "fsptrace fsptrace-testdriver "
+
+
+################ ADALS ############################################
+
+## 1 fsptrace ######
+IMAGE_INSTALL_append +="fsptrace-adal fsptrace-adal-staticdev fsptrace-adal-dev fsptrace-adal-dbg "
+
+################ APPS ############################################
+
+## 1 fsptrace ######
+IMAGE_INSTALL_append +="fsp-trace libtrex test-fsptrace-adal "
+
+
+################ openBMC packages ############################################
+
+IMAGE_INSTALL_append += " crash "
+
+#IMAGE_INSTALL_append += " grpc grpc-dev grpc-dbg "
+
+IMAGE_INSTALL_append += " zeromq zeromq-dev zeromq-dbg "
+
+IMAGE_INSTALL_append += " sqlite3 sqlite3-dbg "
+
+IMAGE_INSTALL_append += " fuse fuse-dev fuse-dbg  "
+
+IMAGE_INSTALL_append += " libtirpc libtirpc-dev libtirpc-dbg "
+
+IMAGE_INSTALL_append += "rpcbind rpcbind-dev rpcbind-dbg "
+
+IMAGE_INSTALL_append = " kernel-modules "
+
+EXTRA_IMAGE_FEATURES += " tools-debug"
+
+IMAGE_INSTALL_append +=" libatomic libatomic procps "
+
+IMAGE_INSTALL_append += " libstdc++ "
+
+IMAGE_INSTALL_append += " kmod kmod-dbg rpm rpm-dbg "
+
+IMAGE_INSTALL_append += " makedumpfile makedumpfile-dev makedumpfile-dbg "
+
+IMAGE_INSTALL_append += " lua acl   "
+
+#IMAGE_INSTALL_append += " openldap openldap-dev "
+
+IMAGE_INSTALL_append += " libidn gmp nettle libcap libcap-dbg "
+
+IMAGE_INSTALL_append += " libgpg-error libgpg-error-dbg libgcrypt  libgcrypt-dbg "
+
+IMAGE_INSTALL_append += " libpam pam-plugin-succeed-if pam-plugin-access libpam-dbg "
+
+IMAGE_INSTALL_append += " net-snmp net-snmp-dev net-snmp-dbg "
+
+IMAGE_INSTALL_append += "openssh openssh-dev openssh-dbg "
+
+IMAGE_INSTALL_append += "util-linux util-linux-dev util-linux-dbg "
+
+IMAGE_INSTALL_append += " tcpdump tcpdump-dev tcpdump-dbg "
+
+IMAGE_INSTALL_append += " pciutils pciutils-dev pciutils-dbg "
+
+IMAGE_INSTALL_append += "net-tools net-tools-dev net-tools-dbg "
+
+IMAGE_INSTALL_append += "krb5 krb5-dev krb5-dbg "
+
+IMAGE_INSTALL_append += "xz xz-dev xz-dbg "
+
+IMAGE_INSTALL_append += "lua lua-dev lua-dbg "
+
+IMAGE_INSTALL_append += "libbz2 "
+
+IMAGE_INSTALL_append += "elfutils elfutils-dev elfutils-dbg "
+
+IMAGE_INSTALL_append += "libcap-ng libcap-ng-dev libcap-ng-dbg "
+
+IMAGE_INSTALL_append += "libxml2 libxml2-dbg liburcu liburcu-dbg "
+
+IMAGE_INSTALL_append += "ifenslave ethtool kexec-tools kexec-tools-dbg "
+
+IMAGE_INSTALL_append += "udev "
+
+IMAGE_INSTALL_append += "trace-cmd trace-cmd-dbg "
+
+################ Debug packages ############################################
+
+
+IMAGE_INSTALL_append += "glibc-dbg " 
+
+IMAGE_INSTALL_append +="lttng-ust "
+
+IMAGE_INSTALL_append +="babeltrace babeltrace-dev"
+
+IMAGE_INSTALL_append +="lttng-tools lttng-tools-dev "
+
+IMAGE_INSTALL_append +="lttng-modules lttng-modules-dev "

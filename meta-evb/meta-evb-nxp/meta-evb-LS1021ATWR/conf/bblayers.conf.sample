@@ -1,0 +1,37 @@
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+LCONF_VERSION = "8"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  ##OEROOT##/meta \
+  ##OEROOT##/meta-poky \
+  ##OEROOT##/meta-openembedded/meta-filesystems/   \
+  ##OEROOT##/meta-openembedded/meta-oe \
+  ##OEROOT##/meta-openembedded/meta-networking \
+  ##OEROOT##/meta-openembedded/meta-python \
+  ##OEROOT##/meta-openembedded/meta-webserver \
+  ##OEROOT##/meta-phosphor \
+  ##OEROOT##/meta-freescale \
+  ##OEROOT##/meta-evb \
+  ##OEROOT##/meta-evb/meta-evb-nxp \
+  ##OEROOT##/meta-evb/meta-evb-nxp/meta-evb-LS1021ATWR \
+  ##OEROOT##/meta-openbmc-bsp/meta-ibm/meta-fsp2 \
+  ##OEROOT##/meta-openbmc-bsp/meta-ibm/meta-ibm-internal-nxp/meta-fsp2-drivers \
+  ##OEROOT##/meta-openbmc-bsp/meta-ibm/meta-ibm-internal-nxp/meta-fsp2-adals \
+  ##OEROOT##/meta-openbmc-bsp/meta-ibm/meta-ibm-internal-nxp/meta-fsp2-apps \  
+  ##OEROOT##/meta-openbmc-bsp/meta-ibm/meta-ibm-internal-nxp/meta-fsp2-boot \
+  "
+BBLAYERS_NON_REMOVABLE ?= " \
+  ##OEROOT##/meta \
+  ##OEROOT##/meta-poky \
+  ##OEROOT##/meta-openembedded/meta-oe \
+  ##OEROOT##/meta-openembedded/meta-networking \
+  ##OEROOT##/meta-openembedded/meta-python \
+  ##OEROOT##/meta-phosphor \
+  ##OEROOT##/meta-nuvoton \
+  ##OEROOT##/meta-evb \
+  ##OEROOT##/meta-evb/meta-evb-nxp \
+  "
