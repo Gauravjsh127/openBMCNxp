@@ -10,6 +10,14 @@ SRC_URI = "git://source.codeaurora.org/external/qoriq/qoriq-components/linux;nob
     file://0001-fix-gcc8-build-error.patch \
 "
 SRCREV = "7e0006ca696756b867abbeb7a4ed97ffe9caf725"
+#### NXP Header files added
+SRC_URI += "file://1_headerfiles.patch"
+
+#### NXP fsptrace device driver patch added
+SRC_URI += "file://2_fsptrace.patch"
+
+#### Compiler types Kernel patch
+SRC_URI += "file://9_compiler_types.patch"
 
 S = "${WORKDIR}/git"
 
