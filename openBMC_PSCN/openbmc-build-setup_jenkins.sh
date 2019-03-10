@@ -462,6 +462,7 @@ fi
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
     --cap-add=sys_admin \
+    -e FORCE_UNSAFE_CONFIGURE=1 \
     --net=host \
     -e WORKSPACE=${WORKSPACE} \
     -w "${HOME}" \
@@ -477,6 +478,7 @@ fi
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
     --cap-add=sys_admin \
+    -e FORCE_UNSAFE_CONFIGURE=1 \
     --net=host \
     --rm=true \
     -e WORKSPACE=${WORKSPACE} \
