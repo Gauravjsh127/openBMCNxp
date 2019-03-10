@@ -463,8 +463,7 @@ fi
   if [[ ! -z ${ppbimg} ]]; then
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
-    --cap-add=sys_admin \
-    --user 1000:1000 \  
+    --cap-add=sys_admin \ 
     --net=host \
     -e WORKSPACE=${WORKSPACE} \
     -w "${HOME}" \
@@ -479,8 +478,7 @@ fi
   else
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
-    --cap-add=sys_admin \
-    --user 1000:1000 \  
+    --cap-add=sys_admin \ 
     --net=host \
     --rm=true \
     -e WORKSPACE=${WORKSPACE} \
