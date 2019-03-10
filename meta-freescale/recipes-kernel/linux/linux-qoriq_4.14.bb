@@ -50,7 +50,18 @@ do_merge_delta_config() {
         echo "CONFIG_CPU_BIG_ENDIAN=y" >> .config
         echo "CONFIG_MTD_CFI_BE_BYTE_SWAP=y" >> .config
     fi
-
+	echo "CONFIG_DEBUG_INFO=y" >> .config
+	echo "CONFIG_CRASH_DUMP=y" >> .config
+	echo "CONFIG_SYSFS=y" >> .config
+	echo "CONFIG_KEXEC=y" >> .config
+	echo "AUTO_ZRELADDR=y" >> .config
+	echo "CONFIG_PROC_FS=y" >> .config
+	echo "CONFIG_PROC_KCORE=y" >> .config
+	echo "CONFIG_PROC_VMCORE=y" >> .config
+	echo "CONFIG_PROC_SYSCTL=y" >> .config
+    echo "CONFIG_PROC_PAGE_MONITOR=y" >> .config
+    echo "CONFIG_SYSFS=y" >> .config
+    echo "CONFIG_TMPFS=y" >> .config
     # add config fragments
     for deltacfg in ${DELTA_KERNEL_DEFCONFIG}; do
         if [ -f ${S}/arch/${ARCH}/configs/${deltacfg} ]; then
