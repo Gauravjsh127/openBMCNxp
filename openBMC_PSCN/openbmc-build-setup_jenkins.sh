@@ -229,7 +229,6 @@ elif [[ "${distro}" == boesemcp ]]; then
   ENV LANG en_US.UTF-8
   ENV LANGUAGE en_US:en
   ENV LC_ALL en_US.UTF-8
-  ENV FORCE_UNSAFE_CONFIGURE=1
   RUN yum-config-manager --add-repo http://mirror.centos.org/centos/7/os/x86_64/
   RUN yum install -y --nogpgcheck yum-plugin-ovl
   RUN yum install -y --nogpgcheck curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker
@@ -350,10 +349,6 @@ PARALLEL_MAKE = "-j$(nproc)"
 DL_DIR="${sscdir}/bitbake_downloads"
 
 EOF_CONF
-
-echo "skip the do_configure check for core_utils_recipie"
-export FORCE_UNSAFE_CONFIGURE=1
-
 # Kick off a build
 # To generate the core-image-minimal
 echo "Generate the core-image-minimal"
@@ -369,6 +364,13 @@ cd ..
 #### Build the nxp-bmc evaluation Board target  ####### 
 export TEMPLATECONF=meta-evb/meta-evb-nxp/meta-evb-x86/conf/
 ${BITBAKE_CMD}
+# Custom BitBake config settings
+cat >> conf/local.conf << EOF_CONF
+BB_NUMBER_THREADS = "$(nproc)"
+PARALLEL_MAKE = "-j$(nproc)"
+DL_DIR="${sscdir}/bitbake_downloads"
+EOF_CONF
+# Kick off a build
 # To generate the core-image-minimal
 echo "Generate the core-image-minimal-x86"
 bitbake core-image-minimal-x86 
@@ -462,7 +464,6 @@ fi
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
     --cap-add=sys_admin \
-    -e FORCE_UNSAFE_CONFIGURE=1 \
     --net=host \
     -e WORKSPACE=${WORKSPACE} \
     -w "${HOME}" \
@@ -478,7 +479,6 @@ fi
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
     --cap-add=sys_admin \
-    -e FORCE_UNSAFE_CONFIGURE=1 \
     --net=host \
     --rm=true \
     -e WORKSPACE=${WORKSPACE} \
