@@ -309,6 +309,10 @@ mkdir -p ${WORKSPACE}
 
 cat > "${WORKSPACE}"/build.sh << EOF_SCRIPT
 #!/bin/bash
+
+chown -R 1000 /*
+chmod -R a+rx /*
+
 set -xeo pipefail
 # Use the mounted repo cache to make an internal repo not mounted externally
 cp -R ${obmcext} ${obmcdir}
@@ -463,7 +467,7 @@ fi
   if [[ ! -z ${ppbimg} ]]; then
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
-    -cap-add=ALL --cap-drop=MKNOD --cap-drop=SYS_ADMIN \
+    --cap-add=sys_admin \
     --net=host \
     -e WORKSPACE=${WORKSPACE} \
     -w "${HOME}" \
@@ -478,7 +482,7 @@ fi
   else
     # Run the Docker container, execute the build.sh script
     $dockercmd run \
-    -cap-add=ALL --cap-drop=MKNOD --cap-drop=SYS_ADMIN \
+    --cap-add=sys_admin \
     --net=host \
     --rm=true \
     -e WORKSPACE=${WORKSPACE} \
