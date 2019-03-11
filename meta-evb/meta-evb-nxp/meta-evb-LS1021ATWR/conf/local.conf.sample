@@ -32,11 +32,13 @@ IMAGE_INSTALL_append = "kernel-vmlinux "
 
 IMAGE_INSTALL_append = "kernel-devicetree "
 
+IMAGE_INSTALL_append = "images "
 
 ################ Drivers ############################################
 ##1 fsptrace ######
 IMAGE_INSTALL_append = "fsptrace fsptrace-testdriver "
 
+IMAGE_INSTALL_append = "trace-cmd "
 
 ################ ADALS ############################################
 
