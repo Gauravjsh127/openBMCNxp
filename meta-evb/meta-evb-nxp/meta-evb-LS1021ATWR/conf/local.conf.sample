@@ -121,6 +121,7 @@ IMAGE_INSTALL_append += "udev "
 
 ################ Debug packages ############################################
 
+IMAGE_INSTALL_append +="netcat "
 
 IMAGE_INSTALL_append += "glibc-dbg " 
 
