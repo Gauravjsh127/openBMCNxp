@@ -310,8 +310,8 @@ mkdir -p ${WORKSPACE}
 cat > "${WORKSPACE}"/build.sh << EOF_SCRIPT
 #!/bin/bash
 
-chown -R 1000 /*
-chmod -R a+rx /*
+useradd tempUser 
+su - tempUser
 
 set -xeo pipefail
 # Use the mounted repo cache to make an internal repo not mounted externally
@@ -362,6 +362,8 @@ bitbake core-image-minimal
 echo "Generate the SDK for the core-image-minimal"
 bitbake core-image-minimal -c populate_sdk
 
+
+sudo su
 
 rm -rf conf
 cd ..
