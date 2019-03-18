@@ -309,10 +309,6 @@ mkdir -p ${WORKSPACE}
 
 cat > "${WORKSPACE}"/build.sh << EOF_SCRIPT
 #!/bin/bash
-
-useradd tempUser 
-su - tempUser
-
 set -xeo pipefail
 # Use the mounted repo cache to make an internal repo not mounted externally
 cp -R ${obmcext} ${obmcdir}
@@ -343,6 +339,9 @@ EOF_GIT
 EOF_SVN
 fi
 
+#### Delete Any previous machine conf settings ####### 
+rm -rf build/conf
+
 #### Build the nxp-bmc evaluation Board target  ####### 
 export TEMPLATECONF=meta-evb/meta-evb-nxp/meta-evb-LS1021ATWR/conf/
 ${BITBAKE_CMD}
@@ -362,8 +361,6 @@ bitbake core-image-minimal
 echo "Generate the SDK for the core-image-minimal"
 bitbake core-image-minimal -c populate_sdk
 
-
-sudo su
 
 rm -rf conf
 cd ..
