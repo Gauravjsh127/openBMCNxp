@@ -23,9 +23,9 @@ SRC_URI = "${GNU_MIRROR}/coreutils/${BP}.tar.xz \
 SRC_URI[md5sum] = "ab06d68949758971fe744db66b572816"
 SRC_URI[sha256sum] = "e831b3a86091496cdba720411f9748de81507798f6130adeaef872d206e1b057"
 
-EXTRA_OECONF_class-native = "--without-gmp"
-EXTRA_OECONF_class-target = "--enable-install-program=arch,hostname --libexecdir=${libdir}"
-EXTRA_OECONF_class-nativesdk = "--enable-install-program=arch,hostname"
+EXTRA_OECONF_class-native = "FORCE_UNSAFE_CONFIGURE=1 --without-gmp"
+EXTRA_OECONF_class-target = "FORCE_UNSAFE_CONFIGURE=1 --enable-install-program=arch,hostname --libexecdir=${libdir}"
+EXTRA_OECONF_class-nativesdk = "FORCE_UNSAFE_CONFIGURE=1 --enable-install-program=arch,hostname"
 
 # acl and xattr are not default features
 #
