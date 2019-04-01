@@ -1,0 +1,22 @@
+diff --git a/makedumpfile_orig.c b/makedumpfile.c
+index 1ed3d61..c24b0c9 100644
+--- a/makedumpfile_orig.c
++++ b/makedumpfile.c
+@@ -1152,7 +1152,7 @@ check_release(void)
+ 		}
+ 	}
+ 
+-	info->kernel_version = get_kernel_version(info->system_utsname.release);
++	info->kernel_version = get_kernel_version(info->release);
+ 	if (info->kernel_version == FALSE) {
+ 		ERRMSG("Can't get the kernel version.\n");
+ 		return FALSE;
+@@ -3582,7 +3582,7 @@ get_mem_map(void)
+ 		DEBUG_MSG("\n");
+ 		DEBUG_MSG("Memory type  : FLATMEM\n");
+ 		DEBUG_MSG("\n");
+-		ret = get_mm_flatmem();
++		//ret = get_mm_flatmem();
+ 		break;
+ 	default:
+ 		ERRMSG("Can't distinguish the memory type.\n");

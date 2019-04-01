@@ -10,6 +10,7 @@ SRC_URI = "git://source.codeaurora.org/external/qoriq/qoriq-components/linux;nob
     file://0001-fix-gcc8-build-error.patch \
 "
 SRCREV = "7e0006ca696756b867abbeb7a4ed97ffe9caf725"
+
 #### NXP Header files added
 SRC_URI += "file://1_headerfiles.patch"
 
@@ -18,6 +19,7 @@ SRC_URI += "file://2_fsptrace.patch"
 
 #### Compiler types Kernel patch
 SRC_URI += "file://9_compiler_types.patch"
+
 
 S = "${WORKDIR}/git"
 
@@ -50,18 +52,11 @@ do_merge_delta_config() {
         echo "CONFIG_CPU_BIG_ENDIAN=y" >> .config
         echo "CONFIG_MTD_CFI_BE_BYTE_SWAP=y" >> .config
     fi
-	echo "CONFIG_DEBUG_INFO=y" >> .config
+    
+    echo "CONFIG_DEBUG_INFO=y" >> .config
 	echo "CONFIG_CRASH_DUMP=y" >> .config
-	echo "CONFIG_SYSFS=y" >> .config
-	echo "CONFIG_KEXEC=y" >> .config
-	echo "AUTO_ZRELADDR=y" >> .config
-	echo "CONFIG_PROC_FS=y" >> .config
-	echo "CONFIG_PROC_KCORE=y" >> .config
 	echo "CONFIG_PROC_VMCORE=y" >> .config
-	echo "CONFIG_PROC_SYSCTL=y" >> .config
-    echo "CONFIG_PROC_PAGE_MONITOR=y" >> .config
-    echo "CONFIG_SYSFS=y" >> .config
-    echo "CONFIG_TMPFS=y" >> .config
+	
     # add config fragments
     for deltacfg in ${DELTA_KERNEL_DEFCONFIG}; do
         if [ -f ${S}/arch/${ARCH}/configs/${deltacfg} ]; then

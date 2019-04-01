@@ -115,7 +115,7 @@ IMAGE_INSTALL_append += "libcap-ng libcap-ng-dev libcap-ng-dbg "
 
 IMAGE_INSTALL_append += "libxml2 libxml2-dbg liburcu liburcu-dbg "
 
-IMAGE_INSTALL_append += "ifenslave ethtool kexec-tools kexec-tools-dbg "
+IMAGE_INSTALL_append += "ifenslave ethtool "
 
 IMAGE_INSTALL_append += "udev "
 
@@ -132,3 +132,7 @@ IMAGE_INSTALL_append +="babeltrace babeltrace-dev"
 IMAGE_INSTALL_append +="lttng-tools lttng-tools-dev "
 
 IMAGE_INSTALL_append +="lttng-modules lttng-modules-dev "
+
+################ kdump/kexec packages ############################################
+
+IMAGE_INSTALL_append +=" kexec-tools kexec-tools-dev kexec-tools-dbg "
