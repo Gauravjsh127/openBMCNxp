@@ -136,3 +136,7 @@ IMAGE_INSTALL_append +="lttng-modules lttng-modules-dev "
 ################ kdump/kexec packages ############################################
 
 IMAGE_INSTALL_append +=" kexec-tools kexec-tools-dev kexec-tools-dbg "
+
+################ FSI DD test package ############################################
+
+IMAGE_INSTALL_append +="gpcm2fsi "
