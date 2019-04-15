@@ -40,6 +40,16 @@ IMAGE_INSTALL_append = "fsptrace fsptrace-testdriver "
 
 IMAGE_INSTALL_append = "trace-cmd "
 
+
+##2 IBM utils ######
+IMAGE_INSTALL_append +="ibmutils"
+
+
+##3 ngfsi ######
+IMAGE_INSTALL_append +="ngfsi"
+
+
+
 ################ ADALS ############################################
 
 ## ADAL Header files ######
@@ -71,8 +81,8 @@ IMAGE_INSTALL_append += "dd-ffdc-adal dd-ffdc-adal-dev dd-ffdc-adal-dbg "
 IMAGE_INSTALL_append += "psi-adal psi-adal-dev psi-adal-dbg "
 
 ##9 IIC ######
-IMAGE_INSTALL_append += "iic-master-adal iic-master-adal-dev iic-master-adal-dbg "
-IMAGE_INSTALL_append += "iic-slave-adal iic-slave-adal-dev iic-slave-adal-dbg "
+#IMAGE_INSTALL_append += "iic-master-adal iic-master-adal-dev iic-master-adal-dbg "
+#IMAGE_INSTALL_append += "iic-slave-adal iic-slave-adal-dev iic-slave-adal-dbg "
 
 ##10 mbx ######
 IMAGE_INSTALL_append += "mbx-adal mbx-adal-dev mbx-adal-dbg "
