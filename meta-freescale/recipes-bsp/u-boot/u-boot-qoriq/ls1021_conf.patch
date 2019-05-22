@@ -1,0 +1,13 @@
+diff --git a/include/configs/ls1021atwr.h b/include/configs/ls1021atwr.h
+index 8f27d9e..137ddef 100644
+--- a/include/configs/ls1021atwr.h
++++ b/include/configs/ls1021atwr.h
+@@ -6,7 +6,7 @@
+ 
+ #ifndef __CONFIG_H
+ #define __CONFIG_H
+-
++#define CONFIG_SPI_FLASH_BAR
+ #define CONFIG_ARMV7_PSCI_1_0
+ 
+ #define CONFIG_ARMV7_SECURE_BASE       OCRAM_BASE_S_ADDR

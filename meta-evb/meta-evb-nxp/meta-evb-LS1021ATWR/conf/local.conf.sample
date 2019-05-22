@@ -36,7 +36,7 @@ IMAGE_INSTALL_append = "images "
 
 ################ Drivers ############################################
 ##1 fsptrace ######
-IMAGE_INSTALL_append = "fsptrace fsptrace-testdriver "
+IMAGE_INSTALL_append = "fsptrace "
 
 IMAGE_INSTALL_append = "trace-cmd "
 
@@ -126,7 +126,7 @@ IMAGE_INSTALL_append += "sbefifo-adal sbefifo-adal-dev sbefifo-adal-dbg "
 ################ APPS ############################################
 
 ## 1 fsptrace ######
-IMAGE_INSTALL_append +="fsp-trace libtrex test-fsptrace-adal "
+IMAGE_INSTALL_append +="fsp-trace libtrex "
 
 
 ################ openBMC packages ############################################
@@ -216,5 +216,6 @@ IMAGE_INSTALL_append +="lttng-modules lttng-modules-dev "
 IMAGE_INSTALL_append +=" kexec-tools kexec-tools-dev kexec-tools-dbg "
 
 ################ FSI DD test package ############################################
-
 IMAGE_INSTALL_append +="gpcm2fsi "
+
+IMAGE_INSTALL_append +="trace-collect "

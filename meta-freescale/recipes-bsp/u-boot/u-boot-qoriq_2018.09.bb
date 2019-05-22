@@ -1,6 +1,11 @@
 require recipes-bsp/u-boot/u-boot.inc
 require u-boot-qoriq-common_${PV}.inc
 
+
+#### ls1021 configuration patch file 
+SRC_URI += "file://ls1021_conf.patch"
+
+
 DESCRIPTION = "U-Boot provided by Freescale with focus on QorIQ boards"
 PROVIDES += "u-boot"
 
